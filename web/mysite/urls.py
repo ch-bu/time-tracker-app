@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from mywebapp.views import index
+from timetracker.views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('mywebapp.urls')),
+    url(r'^$', include('timetracker.urls')),
     # url(r'^$', index, name='index')
 ]
