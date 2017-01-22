@@ -1,1 +1,4 @@
 **/*.pyc
+
+# Ignore directories
+/web/node_modules
