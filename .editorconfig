@@ -15,7 +15,7 @@ indent_size = 4
 
 [*.py]
 indent_style = space
-intent_size = 4
+indent_size = 4
 
 [*.{html,js,rb,scss,xml}]
 indent_size = 2
