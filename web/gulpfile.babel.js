@@ -19,9 +19,9 @@ const reload = browserSync.reload;
 
 // Bundle all javascript files
 gulp.task('webpack', () => {
-  return gulp.src('app/scripts/main.js')
+  return gulp.src('timetracker/static/timetracker/js/main.js')
     .pipe(webpack(require('./webpack.config.js')))
-    .pipe(gulp.dest('.tmp/scripts'));
+    .pipe(gulp.dest('timetracker/static/timetracker/js/'));
 });
 
 // /**
@@ -98,19 +98,19 @@ gulp.task('webpack', () => {
 // });
 
 // // Watch files for changes
-// gulp.task('serve', ['clean', 'webpack', 'styles', 'babel-sw'], () => {
+// gulp.task('serve', [''], () => {
 //   browserSync({
 //       notify: false,
-//       port: 3000,
+//       port: 8080,
 //       server: {
-//           baseDir: ['app', '.tmp']
+//           baseDir: []
 //       }
 //   });
 
-//   gulp.watch(['app/service-worker.js'], ['babel-sw', reload]);
-//   gulp.watch(['app/styles/*.scss'], ['styles', reload]);
-//   gulp.watch(['app/*.html'], reload);
-//   gulp.watch(['app/scripts/**/*'], ['webpack', reload]);
+//   // gulp.watch(['app/service-worker.js'], ['babel-sw', reload]);
+//   // gulp.watch(['app/styles/*.scss'], ['styles', reload]);
+//   gulp.watch(['timetracker/static/timetracker/js/main.js'], ['webpack', reload]);
+//   // gulp.watch(['app/scripts/**/*'], ['webpack', reload]);
 // });
 
 
