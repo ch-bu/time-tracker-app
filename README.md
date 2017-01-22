@@ -1,6 +1,6 @@
-# Docker webapp
+# Time tracker app
 
-This is a docker-compose project that I use for my web applications. It runs [nginx](https://www.nginx.com/resources/wiki/), [gunicorn](http://gunicorn.org/), [django](https://www.djangoproject.com/) and [postgres](https://www.postgresql.org/). 
+This is a time logging app. It tracks and visualizes the work you have done.
 
 # How to run locally
 
