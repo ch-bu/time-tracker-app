@@ -11,5 +11,5 @@ def index(request):
     work = Work.objects.all()
 
     # Pick get comment of first work object
-    comment = work[0].started
-    return render(request, 'mysite/base.html', {'comment': comment})
+    comment = 'This is my comment'
+    return render(request, 'timetracker/landing-page.html', {'comment': comment})

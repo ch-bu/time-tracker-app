@@ -1,0 +1,20 @@
+{% extends "mysite/base.html" %}
+
+{% load static %}
+
+{% block title %}Time-Tracker{% endblock %}
+
+{% block content %}
+
+<img height="200" src="{% static "Cute-Cat.jpg" %}" alt="My image"/>
+
+<h1>This is a Heading</h1>
+<p>{{comment}}</p>
+
+{% endblock %}
+
+
+{% block scripts-end %}
+<script src="{% static "timetracker/js/main.min.js" %}"></script>
+{% endblock %}
+
