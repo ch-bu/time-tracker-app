@@ -13,6 +13,7 @@ import rename from 'gulp-rename';
 import babel from 'gulp-babel';
 import del from 'del';
 import runSequence from 'run-sequence';
+import shell from 'gulp-shell';
 
 // Constants
 const reload = browserSync.reload;
@@ -24,108 +25,57 @@ gulp.task('webpack', () => {
     .pipe(gulp.dest('timetracker/static/timetracker/js/'));
 });
 
-// /**
-//  * Compile and automatically prefix stylesheets
-//  */
-// gulp.task('styles', () => {
-//   const AUTOPREFIXER_BROWSERS = [
-//     'ie >= 10',
-//     'ie_mob >= 10',
-//     'ff >= 30',
-//     'chrome >= 34',
-//     'safari >= 7',
-//     'opera >= 23',
-//     'ios >= 7',
-//     'android >= 4.4',
-//     'bb >= 10'
-//   ];
+/**
+ * Compile and automatically prefix stylesheets
+ */
+gulp.task('styles', () => {
+  const AUTOPREFIXER_BROWSERS = [
+    'ie >= 10',
+    'ie_mob >= 10',
+    'ff >= 30',
+    'chrome >= 34',
+    'safari >= 7',
+    'opera >= 23',
+    'ios >= 7',
+    'android >= 4.4',
+    'bb >= 10'
+  ];
 
-//   // For best performance, don't add Sass partials to `gulp.src`
-//   return gulp.src([
-//     'app/styles/*.scss',
-//   ])
-//   .pipe(newer('.tmp/styles'))
-//   .pipe(sourcemaps.init())
-//   .pipe(sass({precision: 10}).on('error', sass.logError))
-//   .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
-//   // // Concatenate and minify styles
-//   .pipe(cssnano())
-//   .pipe(size({title: 'styles'}))
-//   .pipe(sourcemaps.write('./'))
-//   .pipe(rename('styles.min.css'))
-//   .pipe(gulp.dest('.tmp/styles'));
-// });
-
-// /**
-//  * Scan your HTML for assets & optimize them
-//  */
-// gulp.task('html', () => {
-//   return gulp.src('./app/*.html')
-//     // Minify any HTML
-//     .pipe(newer('.tmp'))
-//     .pipe(htmlmin({
-//       removeComments: true,
-//       collapseWhitespace: true,
-//       collapseBooleanAttributes: true,
-//       removeAttributeQuotes: true,
-//       removeRedundantAttributes: true,
-//       removeEmptyAttributes: true,
-//       removeScriptTypeAttributes: true,
-//       removeStyleLinkTypeAttributes: true,
-//       // removeOptionalTags: true
-//     }))
-//     .pipe(gulp.dest('dist'));
-// });
-
-// /**
-//  * Copy all concatenated files to dist directory
-//  */
-// gulp.task('copy-concat-files', () => {
-//   gulp.src(['.tmp/**/*'])
-//     .pipe(gulp.dest('dist'));
-// });
-
-// /**
-//  * Babel service worker
-//  */
-// gulp.task('babel-sw', () => {
-//   gulp.src('app/service-worker.js')
-//     .pipe(babel({
-//       presets: ['es2015']
-//     }))
-//     .pipe(rename('sw.js'))
-//     .pipe(gulp.dest(('.tmp/')));
-// });
-
-// // Watch files for changes
-// gulp.task('serve', [''], () => {
-//   browserSync({
-//       notify: false,
-//       port: 8080,
-//       server: {
-//           baseDir: []
-//       }
-//   });
-
-//   // gulp.watch(['app/service-worker.js'], ['babel-sw', reload]);
-//   // gulp.watch(['app/styles/*.scss'], ['styles', reload]);
-//   gulp.watch(['timetracker/static/timetracker/js/main.js'], ['webpack', reload]);
-//   // gulp.watch(['app/scripts/**/*'], ['webpack', reload]);
-// });
+  // For best performance, don't add Sass partials to `gulp.src`
+  return gulp.src([
+    'timetracker/static/timetracker/scss/*.scss',
+  ])
+  .pipe(newer('timetracker/static/timetracker/css'))
+  .pipe(sourcemaps.init())
+  .pipe(sass({precision: 10}).on('error', sass.logError))
+  .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
+  // // Concatenate and minify styles
+  .pipe(cssnano())
+  .pipe(size({title: 'styles'}))
+  .pipe(sourcemaps.write('./'))
+  .pipe(rename('styles.min.css'))
+  .pipe(gulp.dest('timetracker/static/timetracker/css'));
+});
 
 
-// /**
-//  * Clean output directory
-//  */
-// gulp.task('clean', () => del(['.tmp', 'dist'], {dot: true}));
+/**
+ * Collectstatic files
+ */
+gulp.task('collectstatic', shell.task([
+  'docker-compose run web python manage.py collectstatic --noinput'
+  ]
+));
 
+// Watch files for changes
+gulp.task('serve', ['styles'], () => {
+  browserSync({
+      logPrefix: 'Timetracker',
+      notify: true,
+      port: 8081,
+      proxy: "localhost:8080",
+  });
 
-// /**
-//  * Build app for production
-//  */
-// gulp.task('default', ['clean', 'webpack', 'styles', 'babel-sw', 'html'], (cb) => {
-//   runSequence(
-//     ['copy-concat-files'],
-//     cb
-//   )
-// });
+  gulp.watch(['timetracker/static/timetracker/scss/*.scss'], ['styles', 'collectstatic', reload]);
+  gulp.watch(['timetracker/static/timetracker/js/main.js'], ['webpack', 'collectstatic', reload]);
+  gulp.watch(['timetracker/templates/timetracker/*.html']).on('change', reload);
+});

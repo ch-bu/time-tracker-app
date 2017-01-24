@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'timetracker/css/styles.min.css' %}">
   <title>
-  {% block title %}
-
-  {% endblock %}
+  {% block title %}{% endblock %}
   </title>
 </head>
 <body>
 
-{% block content %}
+{% block content %}{% endblock %}
 
-
-{% endblock %}
-
-
-
-{% block scripts-end %}
-
-{% endblock %}
+{% block scripts-end %}{% endblock %}
 
 
 </body>
