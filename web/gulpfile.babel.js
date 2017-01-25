@@ -75,7 +75,7 @@ gulp.task('serve', ['styles'], () => {
       proxy: "localhost:8080",
   });
 
-  gulp.watch(['timetracker/static/timetracker/scss/*.scss'], ['styles', 'collectstatic', reload]);
+  gulp.watch(['timetracker/static/timetracker/scss/timetracker.scss'], ['styles', 'collectstatic', reload]);
   gulp.watch(['timetracker/static/timetracker/js/main.js'], ['webpack', 'collectstatic', reload]);
   gulp.watch(['timetracker/templates/timetracker/*.html']).on('change', reload);
 });
