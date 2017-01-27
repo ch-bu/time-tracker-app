@@ -20,5 +20,5 @@ from timetracker.views import index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('timetracker.urls')),
-    # url(r'^$', index, name='index')
+    url(r'^api/', include('rest_framework.urls', namespace='rest_framework'))
 ]

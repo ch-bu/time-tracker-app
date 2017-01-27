@@ -2,3 +2,6 @@ Django==1.10.5
 gunicorn==19.3.0
 psycopg2
 django-htmlmin
+djangorestframework
+markdown
+django-filter
