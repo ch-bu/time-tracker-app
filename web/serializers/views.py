@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from htmlmin.decorators import minified_response
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-@minified_response
-def index(request):
-    # Landing Page
 
-    return HttpResponse('Serializers')
+class Test(APIView):
+
+    def get(self, request, format=None):
+        return Response('tests')
