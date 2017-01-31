@@ -7,6 +7,13 @@ module.exports = {
     // path: './.tmp/scripts'
   },
 
+  resolve: {
+    alias: {
+      jquery: "jquery/src/jquery",
+      materialize: "materialize-css/dist/js/materialize"
+    }
+  },
+
   module: {
     loaders: [
       {
@@ -26,11 +33,17 @@ module.exports = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
+
     new webpack.optimize.UglifyJsPlugin({
       // compress: {warnings: true},
       include: /\.min\.js$/,
       minimize: true,
       comments: false
     }),
+
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
   ]
 };
