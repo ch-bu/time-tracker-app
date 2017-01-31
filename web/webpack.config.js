@@ -7,6 +7,14 @@ module.exports = {
     // path: './.tmp/scripts'
   },
 
+  // devtool: "cheap-eval-source-map",
+
+  // devServer: {
+  //   contentBase: path.join(__dirname, './timetracker/static/timetracker/js/main'),
+  //   compress: true,
+  //   port: 9000
+  // },
+
   resolve: {
     alias: {
       jquery: "jquery/src/jquery",
@@ -35,7 +43,9 @@ module.exports = {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      // compress: {warnings: true},
+      compress: {
+        warnings: false
+      },
       include: /\.min\.js$/,
       minimize: true,
       comments: false
