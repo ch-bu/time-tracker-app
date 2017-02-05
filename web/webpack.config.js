@@ -1,10 +1,10 @@
-import webpack from 'webpack';
+//import webpack from 'webpack';
+const webpack = require('webpack');
 
 module.exports = {
   entry: './timetracker/static/timetracker/js/main.js',
   output: {
-    filename: 'main.min.js',
-    // path: './.tmp/scripts'
+    filename: '[name].min.js',
   },
 
   // devtool: "cheap-eval-source-map",
@@ -15,22 +15,26 @@ module.exports = {
   //   port: 9000
   // },
 
-  resolve: {
-    alias: {
-      jquery: "jquery/src/jquery",
-      materialize: "materialize-css/dist/js/materialize"
-    }
-  },
+  // resolve: {
+  //   alias: {
+  //     jquery: "jquery/src/jquery",
+  //     materialize: "materialize-css/dist/js/materialize"
+  //   }
+  // },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node-modules/,
-        query: {
-          presets: ['es2015', 'react']
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015', 'react'],
+            },
+            exclude: ['/node_modules/'],
+          }
+        ]
       }
     ]
   },
