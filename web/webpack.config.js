@@ -1,8 +1,9 @@
 //import webpack from 'webpack';
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  entry: './timetracker/static/timetracker/js/main.js',
+  entry: './timetracker/static/timetracker/js/main.jsx',
   output: {
     filename: '[name].min.js',
   },
@@ -26,15 +27,15 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015', 'react'],
-            },
-            exclude: ['/node_modules/'],
-          }
-        ]
+        // use: [
+        //   'babel-loader'
+        // ],
+        loader: 'babel-loader',
+        include: path.resolve(__dirname, 'timetracker/static/timtracker/js'),
+        exclude: path.resolve(__dirname, 'node_modules'),
+        // options: {
+        //   presets: ['es2015', 'react', 'stage-2']
+        // }
       }
     ]
   },
