@@ -16,26 +16,27 @@ module.exports = {
   //   port: 9000
   // },
 
-  // resolve: {
-  //   alias: {
-  //     jquery: "jquery/src/jquery",
-  //     materialize: "materialize-css/dist/js/materialize"
-  //   }
-  // },
+  resolve: {
+    alias: {
+      jquery: "jquery/src/jquery",
+      materialize: "materialize-css/dist/js/materialize"
+    }
+  },
 
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        // use: [
-        //   'babel-loader'
-        // ],
         loader: 'babel-loader',
-        include: path.resolve(__dirname, 'timetracker/static/timtracker/js'),
+        include: path.resolve(__dirname, 'timetracker/static/timetracker/js'),
         exclude: path.resolve(__dirname, 'node_modules'),
-        // options: {
-        //   presets: ['es2015', 'react', 'stage-2']
-        // }
+        options: {
+          babelrc: false,
+          presets: [
+            ['es2015', { modules: false }],
+            'react',
+          ]
+        }
       }
     ]
   },
