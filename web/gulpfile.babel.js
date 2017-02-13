@@ -43,7 +43,7 @@ gulp.task('styles', () => {
 
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
-    'timetracker/static/timetracker/scss/*.scss',
+    'timetracker/static/timetracker/scss/*.scss'
   ])
   .pipe(newer('timetracker/static/timetracker/css'))
   .pipe(sourcemaps.init())
@@ -54,7 +54,8 @@ gulp.task('styles', () => {
   .pipe(size({title: 'styles'}))
   .pipe(sourcemaps.write('./'))
   .pipe(rename('styles.min.css'))
-  .pipe(gulp.dest('timetracker/static/timetracker/css'));
+  .pipe(gulp.dest('timetracker/static/timetracker/css'))
+  .pipe(gulp.dest('static/timetracker/css'));
 });
 
 
@@ -66,6 +67,12 @@ gulp.task('collectstatic', shell.task([
   ]
 ));
 
+/**
+ * Run webpack command to bundle files
+ */
+gulp.task('webpack', shell.task([
+  'webpack']));
+
 // Watch files for changes
 gulp.task('serve', ['styles'], () => {
   browserSync({
@@ -75,7 +82,7 @@ gulp.task('serve', ['styles'], () => {
       proxy: "localhost:8080",
   });
 
-  gulp.watch(['timetracker/static/timetracker/scss/timetracker.scss'], ['styles', 'collectstatic', reload]);
-  gulp.watch(['timetracker/static/timetracker/js/main.js'], ['webpack', 'collectstatic', reload]);
+  gulp.watch(['timetracker/static/timetracker/scss/timetracker.scss'], ['styles', reload]);
+  gulp.watch(['timetracker/static/timetracker/js/**/*.jsx'], ['webpack', reload]);
   gulp.watch(['timetracker/templates/timetracker/*.html']).on('change', reload);
 });

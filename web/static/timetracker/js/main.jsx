@@ -10,6 +10,6 @@ ReactDom.render(
 );
 
 $(document).ready(() => {
-  Materialize.updateTextFields();
+  console.log('argoto');
 });
 

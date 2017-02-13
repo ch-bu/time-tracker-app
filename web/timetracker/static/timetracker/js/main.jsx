@@ -10,6 +10,6 @@ ReactDom.render(
 );
 
 $(document).ready(() => {
-  console.log('testo');
+  console.log('argoto');
 });
 

@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = {
   entry: './timetracker/static/timetracker/js/main.jsx',
   output: {
+    path: path.join(__dirname, 'static/timetracker/js/'),
     filename: '[name].min.js',
   },
 
@@ -12,6 +13,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, 'timetracker/static/timetracker/js/'),
+    // publicPath: ''
     compress: true,
     port: 9000
   },
@@ -20,7 +22,8 @@ module.exports = {
     alias: {
       jquery: "jquery/src/jquery",
       materialize: "materialize-css/dist/js/materialize"
-    }
+    },
+    unsafeCache: true
   },
 
   module: {
