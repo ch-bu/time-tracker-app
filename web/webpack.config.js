@@ -45,11 +45,11 @@ module.exports = {
   },
 
   plugins: [
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     NODE_ENV: JSON.stringify('production')
-    //   }
-    // }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
 
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -59,6 +59,11 @@ module.exports = {
       minimize: true,
       comments: false
     }),
+
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: require('bundle-manifest.json'),
+    })
 
     // new webpack.ProvidePlugin({
     //   $: 'jquery',
