@@ -10,11 +10,11 @@ module.exports = {
 
   // devtool: "cheap-eval-source-map",
 
-  // devServer: {
-  //   contentBase: path.join(__dirname, './timetracker/static/timetracker/js/main'),
-  //   compress: true,
-  //   port: 9000
-  // },
+  devServer: {
+    contentBase: path.join(__dirname, 'timetracker/static/timetracker/js/'),
+    compress: true,
+    port: 9000
+  },
 
   resolve: {
     alias: {
