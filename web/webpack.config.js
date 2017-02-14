@@ -1,4 +1,3 @@
-//import webpack from 'webpack';
 const webpack = require('webpack');
 const path = require('path');
 
@@ -9,21 +8,18 @@ module.exports = {
     filename: '[name].min.js',
   },
 
-  // devtool: "cheap-eval-source-map",
-
-  devServer: {
-    contentBase: path.join(__dirname, 'timetracker/static/timetracker/js/'),
-    // publicPath: ''
-    compress: true,
-    port: 9000
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, 'timetracker/static/timetracker/js/'),
+  //   // publicPath: ''
+  //   compress: true,
+  //   port: 9000
+  // },
 
   resolve: {
     alias: {
       jquery: "jquery/src/jquery",
       materialize: "materialize-css/dist/js/materialize"
     },
-    unsafeCache: true
   },
 
   module: {
@@ -59,15 +55,5 @@ module.exports = {
       minimize: true,
       comments: false
     }),
-
-    new webpack.DllReferencePlugin({
-      context: '.',
-      manifest: require('bundle-manifest.json'),
-    })
-
-    // new webpack.ProvidePlugin({
-    //   $: 'jquery',
-    //   jQuery: 'jquery'
-    // })
   ]
 };

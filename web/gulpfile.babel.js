@@ -18,12 +18,12 @@ import shell from 'gulp-shell';
 // Constants
 const reload = browserSync.reload;
 
-// Bundle all javascript files
-gulp.task('webpack', () => {
-  return gulp.src('timetracker/static/timetracker/js/main.js')
-    .pipe(webpack(require('./webpack.config.js')))
-    .pipe(gulp.dest('timetracker/static/timetracker/js/'));
-});
+// // Bundle all javascript files
+// gulp.task('webpack', () => {
+//   return gulp.src('timetracker/static/timetracker/js/main.js')
+//     .pipe(webpack(require('./webpack.config.js')))
+//     .pipe(gulp.dest('timetracker/static/timetracker/js/'));
+// });
 
 /**
  * Compile and automatically prefix stylesheets
