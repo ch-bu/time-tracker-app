@@ -1,9 +1,27 @@
+$breakpoint-one: 480px;
+$breakpoint-two: 900px;
+$breakpoint-three: 1200px;
+
 #login {
-  width: 20%;
+  width: 80%;
   margin: 0 auto;
   background-color: #fff;
   padding: 20px;
   margin-top: 10%;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  #login-button {
+    width: 100%;
+  }
+
+  @media only screen
+    and (min-device-width: $breakpoint-two) {
+    width: 30%;
+  }
+
+  @media only screen
+    and (min-device-width: $breakpoint-three) {
+    width: 20%;
+  }
 }
