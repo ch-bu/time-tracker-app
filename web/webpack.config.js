@@ -2,7 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  entry: './timetracker/static/timetracker/js/main.jsx',
+  entry: {
+    login: './timetracker/static/timetracker/js/login.jsx',
+  },
   output: {
     path: path.join(__dirname, 'static/timetracker/js/'),
     filename: '[name].min.js',

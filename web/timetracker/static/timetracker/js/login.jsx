@@ -6,6 +6,6 @@ ReactDOM.render(
 );
 
 $(document).ready(() => {
-  console.log('das ist ein test');
+  console.log('der Login');
 });
 
