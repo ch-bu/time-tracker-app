@@ -35,13 +35,8 @@ def index(request):
 @minified_response
 def login(request):
     if request.method == "GET":
-        # Get all work objects
-        work = Work.objects.all()
-
-        # Pick get comment of first work object
-        comment = 'This is my comment'
-        return render(request, 'timetracker/login.html',
-            {'comment': comment})
+        # Return template
+        return render(request, 'timetracker/login.html')
 
     elif request.method == "POST":
 
