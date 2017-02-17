@@ -1,3 +1,5 @@
+import DjangoCrsftoken from './django-crsf-token.js';
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -6,8 +8,8 @@ class Login extends React.Component {
   render() {
     return (
       <div className="row" id="login">
-        <form className="col s12">
-
+        <form className="col s12" method="post">
+          <DjangoCrsftoken/>
           <div className="row">
             <div className="input-field col s12">
               <input id="username" type="text" />
@@ -23,7 +25,7 @@ class Login extends React.Component {
           </div>
 
           <div className="row">
-            <a id="login-button" className="waves-effect waves-light btn">button</a>
+            <button id="login-button" className="waves-effect waves-light btn">button</button>
           </div>
 
         </form>
