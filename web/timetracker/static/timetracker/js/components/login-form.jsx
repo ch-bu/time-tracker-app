@@ -12,14 +12,14 @@ class Login extends React.Component {
           <DjangoCrsftoken/>
           <div className="row">
             <div className="input-field col s12">
-              <input id="username" type="text" />
+              <input id="username" type="text" name="username" />
               <label htmlFor="username">Username</label>
             </div>
           </div>
 
           <div className="row">
             <div className="input-field col s12">
-              <input id="password" type="password" />
+              <input id="password" type="password" name="password" />
               <label htmlFor="password">Password</label>
             </div>
           </div>
