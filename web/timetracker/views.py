@@ -45,15 +45,22 @@ def login(request):
 
     elif request.method == "POST":
 
-        # username = request.POST['username']
-        # password = request.POST['password']
+        # Get post data
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-        # user = authenticate(username=username, password=password)
+        # Try to authenticate user
+        user = authenticate(username=username, password=password)
 
-        # if user is not None:
-        #     login(request, user)
-        #     return HttpResponse('Login Failed')
-        # else:
-        #     return HttpResponse('Test')
-        #
-        return HttpResponse('postrequestlogin')
+        # User is authenticated
+        if user is not None:
+            login(request, user)
+            return HttpResponse('authenticated')
+            # return redirect('app')
+        # User is not authenticated
+        else:
+            return HttpResponse('Not authenticated')
+
+@minified_response
+def app(request):
+    return HttpResponse('app')
