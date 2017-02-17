@@ -1,4 +1,4 @@
-import LandingPage from './components/landing-page.jsx';
+import LandingPage from './components/login.jsx';
 
 ReactDOM.render(
   <LandingPage />,

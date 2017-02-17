@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from timetracker import views as appviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('timetracker.urls')),
-    url(r'^api/', include('serializers.urls'))
+    url(r'^api/', include('serializers.urls')),
+    url(r'^login/', appviews.login, name='test')
 ]
