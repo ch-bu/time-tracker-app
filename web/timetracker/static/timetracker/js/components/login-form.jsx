@@ -1,5 +1,5 @@
 import DjangoCrsftoken from './django-crsf-token.js';
-import {ajax, getCookie, csrfSafeMethod} from './ajax.js';
+import {ajax, getCookie, csrfSafeMethod} from './helper.js';
 
 class Login extends React.Component {
   constructor(props) {
@@ -54,8 +54,11 @@ class Login extends React.Component {
   logIn(e) {
     e.preventDefault();
 
+    // Get csrftoken cookie
     var csrftoken = getCookie('csrftoken');
 
+    // Set X-CsRFtoken header before each
+    // ajax request
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -64,6 +67,7 @@ class Login extends React.Component {
         }
     });
 
+    // Send request
     $.ajax({
       url: '/login/',
       type: 'POST',
@@ -74,18 +78,9 @@ class Login extends React.Component {
       },
       error(xhr, status, error) {
         console.log(error);
+        Materialize.toast('Your login failed.', 4000)
       }
     });
-    // // Make ajax call
-    // ajax({
-    //   url: '/login',
-    //   type: 'POST',
-      // data: {username: this.state.username,
-      //   password: this.state.password,
-      //   csrfmiddlewaretoken: getCookie('csrftoken')}
-    // }).then(function(result) {
-    //   console.log(result);
-    // });
   }
 }
 
