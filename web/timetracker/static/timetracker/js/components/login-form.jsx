@@ -74,10 +74,10 @@ class Login extends React.Component {
       data: {username: this.state.username,
         password: this.state.password},
       success: function(result) {
-        console.log(result);
+        // Redirect to app page
+        window.location.href = "/app";
       },
       error(xhr, status, error) {
-        console.log(error);
         Materialize.toast('Your login failed.', 4000)
       }
     });

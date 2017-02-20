@@ -35,5 +35,5 @@ def loginView(request):
 
 
 @minified_response
-def app(request):
+def appView(request):
     return HttpResponse('app')
