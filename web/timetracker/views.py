@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from htmlmin.decorators import minified_response
 from timetracker.models import Work
 
@@ -28,11 +28,10 @@ def loginView(request):
         # User is authenticated
         if user is not None:
             login(request, user)
-            return HttpResponse('authenticated')
-            # return redirect('app')
+            return JsonResponse({'result': 'authenticated'}, status=202)
         # User is not authenticated
         else:
-            return HttpResponse('Not authenticated')
+            return JsonResponse({'result': 'not authenticated'}, status=500)
 
 
 @minified_response
