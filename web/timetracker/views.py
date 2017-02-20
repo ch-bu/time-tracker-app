@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 from htmlmin.decorators import minified_response
 from timetracker.models import Work
+from django.contrib.auth.decorators import login_required
 
 @minified_response
 def index(request):
@@ -35,5 +36,6 @@ def loginView(request):
 
 
 @minified_response
+@login_required
 def appView(request):
     return HttpResponse('app')
