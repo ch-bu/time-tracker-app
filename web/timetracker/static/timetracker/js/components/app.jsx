@@ -15,7 +15,16 @@ class App extends React.Component {
           <div className="col m8">
             <input autoFocus={true} type="text" placeholder={"Woran arbeitest du?"} tabindex="1" value={this.state.taskDescription} onChange={this.changeTaskDescription} />
           </div>
-          <div className="col m4">Uhr</div>
+          <div className="col m4">
+            <div className="row">
+              <div className="col m8">
+              </div>
+              <div className="col m4">
+                <i className="medium material-icons">play_circle_filled</i>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     )
