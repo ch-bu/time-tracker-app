@@ -10,11 +10,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="row" id="app">
-        <div className="col m8">
-          <input type="text" tabindex="1" value={this.state.taskDescription} onChange={this.changeTaskDescription} />
+      <div id="app">
+        <div className="row" id="app-task">
+          <div className="col m8">
+            <input type="text" tabindex="1" value={this.state.taskDescription} onChange={this.changeTaskDescription} />
+          </div>
+          <div className="col m4">Uhr</div>
         </div>
-        <div className="col m4">Uhr</div>
       </div>
     )
   }
