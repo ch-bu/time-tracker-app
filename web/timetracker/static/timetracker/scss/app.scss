@@ -3,6 +3,19 @@
   #app-task {
     height: 70px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
+
+
+    input {
+      border-bottom: none;
+      margin-bottom: 0;
+      height: 65px;
+      font-size: 1.4em;
+
+      &:focus {
+        border-bottom: none;
+        box-shadow: none;
+      }
+    }
   }
 
 }
