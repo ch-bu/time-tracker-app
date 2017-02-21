@@ -4,6 +4,7 @@ const path = require('path');
 module.exports = {
   entry: {
     login: './timetracker/static/timetracker/js/login.jsx',
+    app: './timetracker/static/timetracker/js/app.jsx',
   },
   output: {
     path: path.join(__dirname, 'static/timetracker/js/'),

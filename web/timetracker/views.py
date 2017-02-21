@@ -42,4 +42,4 @@ def loginView(request):
 @minified_response
 @login_required
 def appView(request):
-    return HttpResponse('app')
+    return render(request, 'timetracker/app.html')

@@ -1,0 +1,15 @@
+{% extends "mysite/base.html" %}
+
+{% load static %}
+
+{% block title %}App{% endblock %}
+
+{% block content %}
+<div id="app-container"></div>
+{% endblock %}
+
+
+{% block scripts-end %}
+<script src="{% static "timetracker/js/app.min.js" %}"></script>
+{% endblock %}
+
