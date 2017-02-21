@@ -3,16 +3,27 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {taskDescription: ''};
+    // this.state = {taskDescription: ''};
 
     this.changeTaskDescription = this.changeTaskDescription.bind(this);
   }
 
+  changeTaskDescription(e) {
+    console.log(this);
+    // this.setProps({taskDescription: event.target.value});
+    this.props.onChange(e.target.value);
+  }
+
   render() {
+    const task = this.props.taskDescription;
     return (
       <div className="row" id="app-task">
         <div className="col m8">
-          <input autoFocus={true} type="text" placeholder={"Woran arbeitest du?"} tabindex="1" value={this.state.taskDescription} onChange={this.changeTaskDescription} />
+          <input autoFocus={true} type="text"
+            placeholder={"Woran arbeitest du?"}
+            tabindex="1"
+            value={task}
+            onChange={this.changeTaskDescription} />
         </div>
         <div className="col m4">
           <div className="row">
@@ -24,11 +35,7 @@ class Input extends React.Component {
           </div>
         </div>
       </div>
-    )
-  }
-
-  changeTaskDescription(event) {
-    this.setState({taskDescription: event.target.value});
+    );
   }
 }
 

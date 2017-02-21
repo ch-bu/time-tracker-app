@@ -6,20 +6,14 @@ class App extends React.Component {
     super(props);
 
     this.state = {taskDescription: ''};
-
-    this.changeTaskDescription = this.changeTaskDescription.bind(this);
   }
 
   render() {
     return (
       <div id="app">
-        <Input />
+        <Input taskDescription={this.state.taskDescription} />
       </div>
     )
-  }
-
-  changeTaskDescription(event) {
-    this.setState({taskDescription: event.target.value});
   }
 }
 
