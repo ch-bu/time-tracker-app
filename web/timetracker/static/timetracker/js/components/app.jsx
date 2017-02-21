@@ -13,7 +13,7 @@ class App extends React.Component {
       <div id="app">
         <div className="row" id="app-task">
           <div className="col m8">
-            <input autoFocus={true} type="text" tabindex="1" value={this.state.taskDescription} onChange={this.changeTaskDescription} />
+            <input autoFocus={true} type="text" placeholder={"Woran arbeitest du?"} tabindex="1" value={this.state.taskDescription} onChange={this.changeTaskDescription} />
           </div>
           <div className="col m4">Uhr</div>
         </div>
