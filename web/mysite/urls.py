@@ -21,6 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('timetracker.urls')),
     url(r'^api/', include('serializers.urls')),
-    url(r'^login/', appviews.loginView, name='test'),
+    url(r'^login/', appviews.loginView, name='login'),
     url(r'^app/', appviews.appView, name='app')
 ]

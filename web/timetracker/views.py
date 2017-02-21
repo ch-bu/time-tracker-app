@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 from htmlmin.decorators import minified_response
@@ -14,6 +14,10 @@ def index(request):
 @minified_response
 def loginView(request):
     if request.method == "GET":
+        # User has a valid session id
+        if request.user.is_authenticated():
+            # Redirect to app
+            return redirect('app')
         # Return template
         return render(request, 'timetracker/login.html')
 
