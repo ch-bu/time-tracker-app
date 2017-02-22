@@ -5,6 +5,9 @@ class Input extends React.Component {
 
     // Bind this to methods
     this.changeTaskDescription = this.changeTaskDescription.bind(this);
+    this.buttonClicked = this.buttonClicked.bind(this);
+
+    this.state = {buttonStart: 'true' };
   }
 
   changeTaskDescription(e) {
@@ -12,6 +15,8 @@ class Input extends React.Component {
   }
 
   render() {
+    var buttonText = this.state.buttonStart ? 'play_circle_filled' : 'stop';
+
     const task = this.props.taskDescription;
     return (
       <div className="row" id="app-task">
@@ -24,15 +29,22 @@ class Input extends React.Component {
         </div>
         <div className="col m4">
           <div className="row">
-            <div className="col m8">
+            <div className="col m9">
             </div>
-            <div className="col m4">
-              <i className="medium material-icons">play_circle_filled</i>
+            <div className="col m3">
+              <i className="medium material-icons"
+                ref={(button) => { this.button = button; }}
+                onClick={this.buttonClicked}>{buttonText}</i>
             </div>
           </div>
         </div>
       </div>
     );
+  }
+
+  buttonClicked() {
+    // Change button when clicked
+    this.setState({buttonStart: this.state.buttonStart ? false: true });
   }
 }
 
