@@ -3,14 +3,11 @@ class Input extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {taskDescription: ''};
-
+    // Bind this to methods
     this.changeTaskDescription = this.changeTaskDescription.bind(this);
   }
 
   changeTaskDescription(e) {
-    console.log(this);
-    // this.setProps({taskDescription: event.target.value});
     this.props.onChange(e.target.value);
   }
 
