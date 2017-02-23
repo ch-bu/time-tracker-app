@@ -1,6 +1,6 @@
 #app {
 
-  #app-task {
+  #bar-task {
     height: 70px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
 
@@ -21,6 +21,17 @@
     i {
       cursor: pointer;
       padding-top: 3px;
+    }
+  }
+
+  #bar-clock {
+    position: relative;
+    height: 70px;
+
+    span {
+      font-size: 1.4em;
+      position: absolute;
+      top: 25%;
     }
   }
 
