@@ -21,7 +21,7 @@ class App extends React.Component {
 
   handleTaskDescriptionChange(value) {
     this.setState({taskDescription: value}, function() {
-      console.log(this.state.taskDescription);
+      // console.log(this.state.taskDescription);
     });
     // console.log(this.state.taskDescription);
   }

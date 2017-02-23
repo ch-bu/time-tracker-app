@@ -8,7 +8,9 @@ class Input extends React.Component {
     this.buttonClicked = this.buttonClicked.bind(this);
     this.tick = this.tick.bind(this);
 
-    this.state = {buttonStart: true, taskStarted: moment()};
+    // Init state variables
+    this.state = {buttonStart: true,
+      clock: moment('000000', 'HHmmss').format('HH:mm:ss')};
   }
 
   changeTaskDescription(e) {
@@ -16,6 +18,7 @@ class Input extends React.Component {
   }
 
   render() {
+    // Get right icon (play vs. stop)
     var buttonText = this.state.buttonStart ? 'play_circle_filled' : 'stop';
 
     const task = this.props.taskDescription;
@@ -33,7 +36,7 @@ class Input extends React.Component {
             <div className="col m8">
             </div>
             <div className="col m2">
-              <span>{this.state.taskStarted.format('HH:mm:ss')}</span>
+              <span>{this.state.clock}</span>
             </div>
             <div className="col m2">
               <i className="medium material-icons"
@@ -47,27 +50,23 @@ class Input extends React.Component {
   }
 
   buttonClicked() {
-
+    // Start button is clicked
     if (!this.state.buttonStart) {
-      // this.setState({taskStopped: moment() }, function() {
-        // var difference = this.state.taskStopped - this.state.taskStarted
-        // console.log(this.state.taskStarted.from(this.state.taskStopped));
-      // });
-
+      this.setState({clock: moment('000000', 'HHmmss').format('HH:mm:ss')});
       clearInterval(this.timer);
+    // Stop button is clicked
     } else {
-      this.setState({taskStarted: moment() });
-      this.timer = setInterval(this.tick, 1000);
+      this.setState({taskStarted: moment('000000', 'HHmmss')}, function() {
+        this.timer = setInterval(this.tick, 1000);
+      });
     }
 
-    // Change button when clicked
+    // Change button state when clicked
     this.setState({buttonStart: this.state.buttonStart ? false: true});
   }
 
   tick() {
-    // http://jsfiddle.net/brettdewoody/4b8opcf1/
-    var elapsed = moment.duration(moment().diff(this.state.taskStarted));
-    console.log(elapsed.format('HH:mm:ss'));
+    this.setState({clock: this.state.taskStarted.add(1, 's').format('HH:mm:ss')});
   }
 }
 
