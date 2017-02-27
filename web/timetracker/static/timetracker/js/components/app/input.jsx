@@ -44,20 +44,20 @@ class Input extends React.Component {
     );
   }
 
+  // Change description of task whenever
+  // user types any changes in the input box
   changeTaskDescription(e) {
     this.props.onChange(e.target.value);
   }
 
+  // Change button type when user clicks
+  // and handle timer
   onButtonClicked(e) {
     // Stop button is clicked
     if (!this.state.buttonStart) {
-      // this.setState({clock: moment('000000', 'HHmmss').format('HH:mm:ss')});
       clearInterval(this.timer);
     // Start button is clicked
     } else {
-      // this.setState({taskStarted: moment('000000', 'HHmmss')}, function() {
-
-      // });
       this.timer = setInterval(this.tick, 1000);
     }
 
@@ -65,6 +65,8 @@ class Input extends React.Component {
     this.setState({buttonStart: this.state.buttonStart ? false: true});
   }
 
+  // Update parent taskDuration state every second
+  // after us has clicked play button
   tick() {
     this.props.onDurationChange();
   }

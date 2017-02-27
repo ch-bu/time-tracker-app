@@ -7,6 +7,7 @@ class App extends React.Component {
 
     this.state = {taskDescription: '', taskDuration: moment('000000', 'HHmmss')};
 
+    // Bind this to methods
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
   }
@@ -22,11 +23,15 @@ class App extends React.Component {
     )
   }
 
+  // Change description of task whenever
+  // user types any changes in the input box
   handleTaskDescriptionChange(value) {
     this.setState({taskDescription: value}, function() {
     });
   }
 
+  // Change duration of task every second after
+  // start button has been clicked
   handleDurationChange() {
     this.setState({taskDuration: this.state.taskDuration.add(1, 's')});
   }
