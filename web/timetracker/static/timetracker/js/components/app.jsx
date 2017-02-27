@@ -10,15 +10,18 @@ class App extends React.Component {
     // Bind this to methods
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
+    this.onStopButtonClicked = this.onStopButtonClicked.bind(this);
   }
 
+  // Render whole app component
   render() {
     return (
       <div id="app">
         <Input taskDescription={this.state.taskDescription}
           taskDuration={this.state.taskDuration}
           onChange={this.handleTaskDescriptionChange}
-          onDurationChange={this.handleDurationChange} />
+          onDurationChange={this.handleDurationChange}
+          onStopButtonClicked={this.onStopButtonClicked} />
       </div>
     )
   }
@@ -34,6 +37,13 @@ class App extends React.Component {
   // start button has been clicked
   handleDurationChange() {
     this.setState({taskDuration: this.state.taskDuration.add(1, 's')});
+  }
+
+  // When a user clicks the stop button,
+  // rerender tasks and
+  // reset taskDuration state to zero
+  onStopButtonClicked() {
+    this.setState({taskDuration: moment('000000', 'HHmmss')});
   }
 }
 

@@ -55,6 +55,7 @@ class Input extends React.Component {
   onButtonClicked(e) {
     // Stop button is clicked
     if (!this.state.buttonStart) {
+      this.props.onStopButtonClicked();
       clearInterval(this.timer);
     // Start button is clicked
     } else {
