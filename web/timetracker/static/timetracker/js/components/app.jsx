@@ -8,6 +8,7 @@ class App extends React.Component {
     this.state = {taskDescription: '', taskDuration: moment('000000', 'HHmmss')};
 
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
+    this.handleDurationChange = this.handleDurationChange.bind(this);
   }
 
   render() {
@@ -15,16 +16,19 @@ class App extends React.Component {
       <div id="app">
         <Input taskDescription={this.state.taskDescription}
           taskDuration={this.state.taskDuration}
-          onChange={this.handleTaskDescriptionChange} />
+          onChange={this.handleTaskDescriptionChange}
+          onDurationChange={this.handleDurationChange} />
       </div>
     )
   }
 
   handleTaskDescriptionChange(value) {
     this.setState({taskDescription: value}, function() {
-      // console.log(this.state.taskDescription);
     });
-    // console.log(this.state.taskDescription);
+  }
+
+  handleDurationChange() {
+    this.setState({taskDuration: this.state.taskDuration.add(1, 's')});
   }
 }
 
