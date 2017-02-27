@@ -2,3 +2,7 @@
 
 # Ignore directories
 /web/node_modules
+
+# Ignore Sublime
+sublime-project
+sublime-project.sublime-workspace
