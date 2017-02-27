@@ -8,3 +8,8 @@ class Test(APIView):
 
     def get(self, request, format=None):
         return Response('tests')
+
+class tasksView(APIView):
+
+    def get(self, request, format=None):
+        return Response('taskView')
