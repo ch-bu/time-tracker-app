@@ -59,6 +59,7 @@ class Input extends React.Component {
       clearInterval(this.timer);
     // Start button is clicked
     } else {
+      this.props.onStartButtonClicked();
       this.timer = setInterval(this.tick, 1000);
     }
 

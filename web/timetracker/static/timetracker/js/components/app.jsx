@@ -5,12 +5,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {taskDescription: '', taskDuration: moment('000000', 'HHmmss')};
+    this.state = {taskDescription: '',
+                  taskDuration: moment('000000', 'HHmmss'),
+                  taskStarted: null,
+                  taskStopped: null};
 
     // Bind this to methods
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
     this.onStopButtonClicked = this.onStopButtonClicked.bind(this);
+    this.onStartButtonClicked = this.onStartButtonClicked.bind(this);
   }
 
   // Render whole app component
@@ -21,7 +25,8 @@ class App extends React.Component {
           taskDuration={this.state.taskDuration}
           onChange={this.handleTaskDescriptionChange}
           onDurationChange={this.handleDurationChange}
-          onStopButtonClicked={this.onStopButtonClicked} />
+          onStopButtonClicked={this.onStopButtonClicked}
+          onStartButtonClicked={this.onStartButtonClicked} />
       </div>
     )
   }
@@ -44,7 +49,16 @@ class App extends React.Component {
   // reset taskDuration state to zero
   onStopButtonClicked() {
     this.setState({taskDuration: moment('000000', 'HHmmss'),
-                   taskDescription: ''});
+                   taskDescription: '',
+                   taskStopped: new Date()}, function() {
+                    console.log(this.state.taskStarted);
+                    console.log(this.state.taskStopped);
+                   });
+  }
+
+  // When user clicks start Button save date time
+  onStartButtonClicked() {
+    this.setState({taskStarted: new Date()});
   }
 }
 
