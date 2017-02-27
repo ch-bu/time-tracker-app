@@ -10,7 +10,7 @@ class Input extends React.Component {
 
     // Init state variables
     this.state = {buttonStart: true,
-      clock: moment('000000', 'HHmmss').format('HH:mm:ss')};
+      clock: this.props.taskDuration.format('HH:mm:ss')};
   }
 
   changeTaskDescription(e) {

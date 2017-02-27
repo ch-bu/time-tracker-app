@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {taskDescription: ''};
+    this.state = {taskDescription: '', taskDuration: moment('000000', 'HHmmss')};
 
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
   }
@@ -14,6 +14,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <Input taskDescription={this.state.taskDescription}
+          taskDuration={this.state.taskDuration}
           onChange={this.handleTaskDescriptionChange} />
       </div>
     )
