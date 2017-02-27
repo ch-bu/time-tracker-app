@@ -43,7 +43,8 @@ class App extends React.Component {
   // rerender tasks and
   // reset taskDuration state to zero
   onStopButtonClicked() {
-    this.setState({taskDuration: moment('000000', 'HHmmss')});
+    this.setState({taskDuration: moment('000000', 'HHmmss'),
+                   taskDescription: ''});
   }
 }
 
