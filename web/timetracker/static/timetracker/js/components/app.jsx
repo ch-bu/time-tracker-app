@@ -48,12 +48,20 @@ class App extends React.Component {
   // rerender tasks and
   // reset taskDuration state to zero
   onStopButtonClicked() {
+    // Calculate seconds current task has taken
+    var seconds = moment.duration({
+      seconds: this.state.taskDuration.get('second'),
+      minutes: this.state.taskDuration.get('minute'),
+      hours: this.state.taskDuration.get('hour'),
+    }).asSeconds();
+
+    // Reset task values and send data to server when
+    // finished
     this.setState({taskDuration: moment('000000', 'HHmmss'),
-                   taskDescription: '',
-                   taskStopped: new Date()}, function() {
-                    console.log(this.state.taskStarted);
-                    console.log(this.state.taskStopped);
-                   });
+      taskDescription: '',
+      taskStopped: new Date()}, function() {
+        console.log('data to server');
+    });
   }
 
   // When user clicks start Button save date time
