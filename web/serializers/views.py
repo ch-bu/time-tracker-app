@@ -12,12 +12,15 @@ class Test(APIView):
 
 class TaskView(APIView):
 
-    def post(self, request, format=None):
+    def post(self, request):
         # Get request data
-        requestData = request.data
-        requestData['user'] = request.user
+        data = request.data.copy()
+        data['user'] = request.user.id
+        data['duration'] = int(data['duration'])
 
-        serializer = TaskSerializer(data=requestData)
+
+        # return Response(data)
+        serializer = TaskSerializer(data=data)
 
         if serializer.is_valid():
             return Response('valid')
