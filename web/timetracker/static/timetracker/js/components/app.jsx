@@ -1,4 +1,5 @@
 import Input from './app/input.jsx';
+import Tasks from './app/tasks.jsx';
 import DjangoCrsftoken from './django-crsf-token.js';
 import {ajax, getCookie, csrfSafeMethod} from './helper.js';
 
@@ -10,13 +11,49 @@ class App extends React.Component {
     this.state = {taskDescription: '',
                   taskDuration: moment('000000', 'HHmmss'),
                   taskStarted: null,
-                  taskStopped: null};
+                  taskStopped: null,
+                  tasks: this.getTasks()};
+
+    console.log(this.state.tasks);
 
     // Bind this to methods
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
     this.onStopButtonClicked = this.onStopButtonClicked.bind(this);
     this.onStartButtonClicked = this.onStartButtonClicked.bind(this);
+    this.getTasks = this.getTasks.bind(this);
+  }
+
+  componentWillMount() {
+    this.getTasks();
+  }
+
+  getTasks() {
+    // Get tasks and save
+    var self = this;
+
+    // Set X-CsRFtoken header before each
+    // ajax request
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+    });
+
+    // Send request
+    $.ajax({
+      url: '/api/tasks/',
+      type: 'GET',
+      success: function(result) {
+        // self.setState({'tasks': result});
+        return result;
+      },
+      error(xhr, status, error) {
+        Materialize.toast('Your login failed.', 4000);
+      }
+    });
   }
 
   // Render whole app component
@@ -29,6 +66,7 @@ class App extends React.Component {
           onDurationChange={this.handleDurationChange}
           onStopButtonClicked={this.onStopButtonClicked}
           onStartButtonClicked={this.onStartButtonClicked} />
+        <Tasks tasks={this.state.tasks} />
       </div>
     )
   }
@@ -50,6 +88,8 @@ class App extends React.Component {
   // rerender tasks and
   // reset taskDuration state to zero
   onStopButtonClicked() {
+    var self = this;
+
     // Calculate seconds current task has taken
     var seconds = moment.duration({
       seconds: this.state.taskDuration.get('second'),
@@ -89,7 +129,7 @@ class App extends React.Component {
       data: dataToSend,
       success: function(result) {
         // Redirect to app page
-        console.log(result);
+        self.onTaskSaved();
         // window.location.href = "/app";
       },
       error(xhr, status, error) {
@@ -107,6 +147,14 @@ class App extends React.Component {
   // When user clicks start Button save date time
   onStartButtonClicked() {
     this.setState({taskStarted: new Date()});
+  }
+
+  // Render tasks
+  // Whenever a task is saved
+  // the state of the tasks changes
+  // and the tasks rerender automatically
+  onTaskSaved() {
+    this.getTasks();
   }
 }
 
