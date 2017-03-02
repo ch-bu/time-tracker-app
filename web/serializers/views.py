@@ -3,6 +3,7 @@ from htmlmin.decorators import minified_response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from serializers import TaskSerializer
+from timetracker.models import Task
 from django.contrib.auth.models import User
 
 class Test(APIView):
@@ -11,6 +12,15 @@ class Test(APIView):
         return Response('tests')
 
 class TaskView(APIView):
+
+    def get(self, request):
+        # Get all tasks from user
+        tasks = Task.objects.filter(user=request.user)
+
+        serializer = TaskSerializer(tasks, many=True)
+
+        return JsonResponse(serializer.data, status=200, safe=False)
+
 
     def post(self, request):
         # Get request data

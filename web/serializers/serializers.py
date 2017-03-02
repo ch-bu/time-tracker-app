@@ -6,5 +6,6 @@ from timetracker.models import Task
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ('started', 'stopped',
+        fields = ('id', 'started', 'stopped',
             'duration', 'goal', 'user')
+        read_only_fields = ('id', )
