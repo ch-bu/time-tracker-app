@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Task(models.Model):
     # work_category = models.CharField(max_length=300)
     # work_type = models.CharField(max_length=300)
-    user =  models.ForeignKey(User, unique=True)
+    user =  models.ForeignKey(User)
     started = models.DateTimeField()
     stopped = models.DateTimeField()
     duration = models.PositiveSmallIntegerField(default=0)

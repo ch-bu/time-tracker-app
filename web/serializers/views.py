@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from htmlmin.decorators import minified_response
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -22,7 +22,17 @@ class TaskView(APIView):
         # return Response(data)
         serializer = TaskSerializer(data=data)
 
+        # Check if serializer is valid
+        # and save data
         if serializer.is_valid():
-            return Response('valid')
+            serializer.save()
+            return JsonResponse({'status': 'success',
+                'data': {
+                    'post': data
+                }}, status=200)
+        # Data passed to serializer is not valid
         else:
-            return Response('not valid')
+            return JsonResponse({'status': 'fail',
+                'data': {
+                    'post': data
+                }}, status=500)

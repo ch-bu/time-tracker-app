@@ -74,16 +74,19 @@ class App extends React.Component {
         }
     });
 
-    // Send request
-    $.ajax({
-      url: '/api/tasks/',
-      type: 'POST',
-      data: {
+    // Store data to send in variable
+    var dataToSend = {
         started: moment(this.state.taskStarted).format('YYYY-MM-DD HH:mm:ss'),
         stopped: moment().format('YYYY-MM-DD HH:mm:ss'),
         duration: seconds,
         goal: this.state.taskDescription
-      },
+      };
+
+    // Send request
+    $.ajax({
+      url: '/api/tasks/',
+      type: 'POST',
+      data: dataToSend,
       success: function(result) {
         // Redirect to app page
         console.log(result);
