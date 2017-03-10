@@ -12,9 +12,7 @@ class App extends React.Component {
                   taskDuration: moment('000000', 'HHmmss'),
                   taskStarted: null,
                   taskStopped: null,
-                  tasks: this.getTasks()};
-
-    console.log(this.state.tasks);
+                  tasks: null};
 
     // Bind this to methods
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
@@ -24,40 +22,13 @@ class App extends React.Component {
     this.getTasks = this.getTasks.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getTasks();
-  }
-
-  getTasks() {
-    // Get tasks and save
-    var self = this;
-
-    // Set X-CsRFtoken header before each
-    // ajax request
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-              xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-    });
-
-    // Send request
-    $.ajax({
-      url: '/api/tasks/',
-      type: 'GET',
-      success: function(result) {
-        // self.setState({'tasks': result});
-        return result;
-      },
-      error(xhr, status, error) {
-        Materialize.toast('Your login failed.', 4000);
-      }
-    });
   }
 
   // Render whole app component
   render() {
+
     return (
       <div id="app">
         <Input taskDescription={this.state.taskDescription}
@@ -74,8 +45,7 @@ class App extends React.Component {
   // Change description of task whenever
   // user types any changes in the input box
   handleTaskDescriptionChange(value) {
-    this.setState({taskDescription: value}, function() {
-    });
+    this.setState({taskDescription: value});
   }
 
   // Change duration of task every second after
@@ -128,9 +98,7 @@ class App extends React.Component {
       type: 'POST',
       data: dataToSend,
       success: function(result) {
-        // Redirect to app page
-        self.onTaskSaved();
-        // window.location.href = "/app";
+        self.setState({tasks: self.getTasks()});
       },
       error(xhr, status, error) {
         Materialize.toast('Your login failed.', 4000)
@@ -144,17 +112,44 @@ class App extends React.Component {
       taskStopped: new Date()});
   }
 
+
+  getTasks() {
+    // Get tasks and save
+    var self = this;
+
+    // Set X-CsRFtoken header before each
+    // ajax request
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+    });
+
+    // Send request
+    $.ajax({
+      url: '/api/tasks/',
+      type: 'GET',
+    // .done(function(result) {
+    //   console.log(result);
+    //   return result;
+    // })
+    // .fail(function(xhr, status, error) {
+    //   Materialize.toast('Your login failed.', 4000);
+    // });
+      success: function(result) {
+        self.setState({tasks: result});
+      },
+      error: function(xhr, status, error) {
+        Materialize.toast('Your tasks could not be fetched.', 4000);
+      }
+    });
+  }
+
   // When user clicks start Button save date time
   onStartButtonClicked() {
     this.setState({taskStarted: new Date()});
-  }
-
-  // Render tasks
-  // Whenever a task is saved
-  // the state of the tasks changes
-  // and the tasks rerender automatically
-  onTaskSaved() {
-    this.getTasks();
   }
 }
 

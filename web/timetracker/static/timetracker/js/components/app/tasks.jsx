@@ -2,20 +2,27 @@ class Tasks extends React.Component {
 
   constructor(props) {
     super(props);
-
-    console.log(this.props.tasks);
   }
 
   render() {
 
-    return (
-      <h1>sfd</h1>
-        // {this.props.tasks.map(function() {
-        //     return <p className="container">Testtestets</p>;
-        //   })}
-    );
-  }
+    var num = Math.floor(Math.random() * 6) + 1;
+    // console.log(this.props.tasks);
 
+    if (this.props.tasks) {
+      var tasks = this.props.tasks.map(function() {
+          return <p className="container">Testtestets</p>;
+      });
+    } else {
+      var tasks = <p>No tasks yet</p>;
+    }
+
+    return (
+      <div>
+        {tasks}
+      </div>
+    )
+  }
 }
 
 export default Tasks;
