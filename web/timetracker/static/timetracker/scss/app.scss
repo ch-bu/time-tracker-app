@@ -1,9 +1,11 @@
 #app {
 
+  background-color:  rgb(250, 251, 252);
+
   #bar-task {
     height: 70px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
-
+    background-color: #fff;
 
     input {
       padding-left: 20px;

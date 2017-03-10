@@ -131,13 +131,6 @@ class App extends React.Component {
     $.ajax({
       url: '/api/tasks/',
       type: 'GET',
-    // .done(function(result) {
-    //   console.log(result);
-    //   return result;
-    // })
-    // .fail(function(xhr, status, error) {
-    //   Materialize.toast('Your login failed.', 4000);
-    // });
       success: function(result) {
         self.setState({tasks: result});
       },

@@ -6,20 +6,17 @@ class Tasks extends React.Component {
 
   render() {
 
-    var num = Math.floor(Math.random() * 6) + 1;
-    // console.log(this.props.tasks);
-
     if (this.props.tasks) {
-      var tasks = this.props.tasks.map(function() {
-          return <p className="container">Testtestets</p>;
+      var tasks = this.props.tasks.map(function(task) {
+          return <li>{task.goal}</li>;
       });
     } else {
       var tasks = <p>No tasks yet</p>;
     }
 
     return (
-      <div>
-        {tasks}
+      <div className="container" id="tasks">
+        <ul className="tasks-ul">{tasks}</ul>
       </div>
     )
   }
