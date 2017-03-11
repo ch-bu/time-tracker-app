@@ -1,11 +1,6 @@
-import LandingPage from './components/login-form.jsx';
+import Login from './components/login/login.jsx';
 
 ReactDOM.render(
-  <LandingPage />,
+  <Login />,
   document.getElementById('landing-page-container')
 );
-
-$(document).ready(() => {
-  console.log('der Login');
-});
-

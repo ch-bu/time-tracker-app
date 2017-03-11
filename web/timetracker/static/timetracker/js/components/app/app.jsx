@@ -1,7 +1,6 @@
-import Input from './app/input.jsx';
-import Tasks from './app/tasks.jsx';
-import DjangoCrsftoken from './django-crsf-token.js';
-import {ajax, getCookie, csrfSafeMethod} from './helper.js';
+import Input from './input.jsx';
+import Tasks from './tasks.jsx';
+import {ajax, getCookie, csrfSafeMethod} from '../../helper/helper.js';
 
 class App extends React.Component {
 

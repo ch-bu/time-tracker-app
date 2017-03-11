@@ -1,5 +1,5 @@
-import DjangoCrsftoken from './django-crsf-token.js';
-import {ajax, getCookie, csrfSafeMethod} from './helper.js';
+import DjangoCrsftoken from '../../helper/django-crsf-token.js';
+import {ajax, getCookie, csrfSafeMethod} from '../../helper/helper.js';
 
 class Login extends React.Component {
   constructor(props) {
