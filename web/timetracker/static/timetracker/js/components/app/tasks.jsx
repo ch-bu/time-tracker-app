@@ -30,7 +30,7 @@ class Tasks extends React.Component {
 
   taskClicked(e) {
     var taskId = e.target.getAttribute('data-task-id');
-    deleteTask(taskId);
+    deleteTask(taskId, this.props.getTasks);
   }
 }
 

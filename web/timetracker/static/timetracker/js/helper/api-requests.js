@@ -1,6 +1,6 @@
 import {ajax, getCookie, csrfSafeMethod} from './helper.js';
 
-function deleteTask(taskId) {
+function deleteTask(taskId, getTasks) {
 
   // Get csrftoken cookie
   var csrftoken = getCookie('csrftoken');
@@ -20,6 +20,7 @@ function deleteTask(taskId) {
     url: '/api/task/' + taskId,
     type: 'DELETE',
     success: function(result) {
+      getTasks();
       return result;
     },
     error(xhr, status, error) {

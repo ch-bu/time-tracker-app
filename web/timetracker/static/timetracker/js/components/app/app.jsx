@@ -36,7 +36,7 @@ class App extends React.Component {
           onDurationChange={this.handleDurationChange}
           onStopButtonClicked={this.onStopButtonClicked}
           onStartButtonClicked={this.onStartButtonClicked} />
-        <Tasks tasks={this.state.tasks} />
+        <Tasks tasks={this.state.tasks} getTasks={this.getTasks} />
       </div>
     )
   }
