@@ -21,29 +21,29 @@ class Input extends React.Component {
     const task = this.props.taskDescription;
     return (
       <div className="row" id="bar-task">
-        <div className="col s4 m5 l8">
+        <div className="col s4 m4 l8">
           <input autoFocus={true} type="text"
             placeholder={"Woran arbeitest du?"}
             tabindex="1"
             value={task}
             onChange={this.changeTaskDescription} />
         </div>
-        <div className="col s8 m7 l4">
+        <div className="col s8 m8 l4">
           <div className="row" id="bar-info">
-            <div className="col s4 l3">
+            <div className="col s3 m2 l3">
               <input tabindex="2" placeholder={"Arbeit"}
                 value={this.props.workDescription}
                 onChange={this.changeWorkDescription} />
             </div>
-            <div className="col s4 l3">
+            <div className="col s3 m2 l3">
               <input tabindex="3" placeholder={"Typ"}
                 value={this.props.typeDescription}
                 onChange={this.changeTypeDescription} />
             </div>
-            <div className="col s4 m4 l3" id="bar-clock">
+            <div className="col s3 m4 l3" id="bar-clock">
               <span>{this.props.taskDuration.format('HH:mm:ss')}</span>
             </div>
-            <div className="col s4 m4 l3">
+            <div className="col s3 m4 l3">
               <i className="medium material-icons"
                 ref={(button) => { this.button = button; }}
                 onClick={this.onButtonClicked}>{buttonText}</i>
