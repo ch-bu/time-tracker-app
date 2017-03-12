@@ -64,10 +64,10 @@ class Input extends React.Component {
         </div>
         <div className="col s8 m8 l4">
           <div className="row" id="bar-info">
-            <div className="col s3 m2 l3">
+            <div className="col s3 m2 l3 bar-info-chip">
               {work}
             </div>
-            <div className="col s3 m2 l3">
+            <div className="col s3 m2 l3 bar-info-chip">
               {type}
             </div>
             <div className="col s3 m4 l3" id="bar-clock">

@@ -42,6 +42,18 @@
     input {
       font-size: 1.2em;
     }
+
+    .bar-info-chip {
+      position: relative;
+      height: 70px;
+
+      .chip {
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        cursor: pointer;
+      }
+    }
   }
 
 }
