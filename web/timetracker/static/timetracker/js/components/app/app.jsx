@@ -8,6 +8,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {taskDescription: '',
+                  workDescription: '',
+                  typeDescription: '',
                   taskDuration: moment('000000', 'HHmmss'),
                   taskStarted: null,
                   taskStopped: null,
@@ -15,7 +17,10 @@ class App extends React.Component {
 
     // Bind this to methods
     this.handleTaskDescriptionChange = this.handleTaskDescriptionChange.bind(this);
+    this.handleWorkDescriptionChange = this.handleWorkDescriptionChange.bind(this);
+    this.handleTypeDescriptionChange = this.handleTypeDescriptionChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
+
     this.onStopButtonClicked = this.onStopButtonClicked.bind(this);
     this.onStartButtonClicked = this.onStartButtonClicked.bind(this);
     this.getTasks = this.getTasks.bind(this);
@@ -31,8 +36,12 @@ class App extends React.Component {
     return (
       <div id="app">
         <Input taskDescription={this.state.taskDescription}
+          workDescription={this.state.workDescription}
+          typeDescription={this.state.typeDescription}
           taskDuration={this.state.taskDuration}
-          onChange={this.handleTaskDescriptionChange}
+          handleTaskDescriptionChange={this.handleTaskDescriptionChange}
+          handleWorkDescriptionChange={this.handleWorkDescriptionChange}
+          handleTypeDescriptionChange={this.handleTypeDescriptionChange}
           onDurationChange={this.handleDurationChange}
           onStopButtonClicked={this.onStopButtonClicked}
           onStartButtonClicked={this.onStartButtonClicked} />
@@ -45,6 +54,19 @@ class App extends React.Component {
   // user types any changes in the input box
   handleTaskDescriptionChange(value) {
     this.setState({taskDescription: value});
+  }
+
+  // Change type of task whenever
+  // user types any changes in the input box
+  handleTypeDescriptionChange(value) {
+    this.setState({typeDescription: value});
+  }
+
+  // Change work description
+  // whenever a user types any changes
+  // in the input box
+  handleWorkDescriptionChange(value) {
+    this.setState({workDescription: value});
   }
 
   // Change duration of task every second after
@@ -108,6 +130,8 @@ class App extends React.Component {
     // finished
     this.setState({taskDuration: moment('000000', 'HHmmss'),
       taskDescription: '',
+      workDescription: '',
+      typeDescription: '',
       taskStopped: new Date()});
   }
 

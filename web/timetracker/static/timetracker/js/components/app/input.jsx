@@ -5,6 +5,8 @@ class Input extends React.Component {
 
     // Bind this to methods
     this.changeTaskDescription = this.changeTaskDescription.bind(this);
+    this.changeWorkDescription = this.changeWorkDescription.bind(this);
+    this.changeTypeDescription = this.changeTypeDescription.bind(this);
     this.onButtonClicked = this.onButtonClicked.bind(this);
     this.tick = this.tick.bind(this);
 
@@ -28,7 +30,16 @@ class Input extends React.Component {
         </div>
         <div className="col s8 m7 l4">
           <div className="row" id="bar-info">
-            <div className="col s4 m4 l6">Test</div>
+            <div className="col s4 l3">
+              <input tabindex="2" placeholder={"Arbeit"}
+                value={this.props.workDescription}
+                onChange={this.changeWorkDescription} />
+            </div>
+            <div className="col s4 l3">
+              <input tabindex="3" placeholder={"Typ"}
+                value={this.props.typeDescription}
+                onChange={this.changeTypeDescription} />
+            </div>
             <div className="col s4 m4 l3" id="bar-clock">
               <span>{this.props.taskDuration.format('HH:mm:ss')}</span>
             </div>
@@ -46,7 +57,15 @@ class Input extends React.Component {
   // Change description of task whenever
   // user types any changes in the input box
   changeTaskDescription(e) {
-    this.props.onChange(e.target.value);
+    this.props.handleTaskDescriptionChange(e.target.value);
+  }
+
+  changeWorkDescription(e) {
+    this.props.handleWorkDescriptionChange(e.target.value);
+  }
+
+  changeTypeDescription(e) {
+    this.props.handleTypeDescriptionChange(e.target.value);
   }
 
   // Change button type when user clicks
