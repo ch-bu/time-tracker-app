@@ -34,6 +34,7 @@ class Input extends React.Component {
     if (this.state.workFocused == true) {
       work =  <input tabindex="2" placeholder={"Arbeit"}
                 value={this.props.workDescription}
+                ref="work"
                 onChange={this.changeWorkDescription}
                 onBlur={this.onBlurWork}/>;
     } else {
@@ -45,6 +46,7 @@ class Input extends React.Component {
     if (this.state.typeFocused == true) {
         type = <input tabindex="3" placeholder={"Typ"}
           value={this.props.typeDescription}
+          ref="type"
           onChange={this.changeTypeDescription}
           onBlur={this.onBlurType} />;
     } else {
@@ -55,14 +57,15 @@ class Input extends React.Component {
 
     return (
       <div className="row" id="bar-task">
-        <div className="col s4 m4 l8">
+        <div className="col s4 m4 l7">
           <input autoFocus={true} type="text"
             placeholder={"Woran arbeitest du?"}
             tabindex="1"
+            ref="taskInput"
             value={task}
             onChange={this.changeTaskDescription} />
         </div>
-        <div className="col s8 m8 l4">
+        <div className="col s8 m8 l5">
           <div className="row" id="bar-info">
             <div className="col s3 m2 l3 bar-info-chip">
               {work}
@@ -73,7 +76,7 @@ class Input extends React.Component {
             <div className="col s3 m4 l3" id="bar-clock">
               <span>{this.props.taskDuration.format('HH:mm:ss')}</span>
             </div>
-            <div className="col s3 m4 l3">
+            <div className="col s3 m4 l2">
               <i className="medium material-icons"
                 ref={(button) => { this.button = button; }}
                 onClick={this.onButtonClicked}>{buttonText}</i>
@@ -85,11 +88,15 @@ class Input extends React.Component {
   }
 
   onWorkChipClick() {
-    this.setState({workFocused: true});
+    this.setState({workFocused: true}, () => {
+      this.refs.work.focus();
+    });
   }
 
   onTypeChipClicked() {
-    this.setState({typeFocused: true});
+    this.setState({typeFocused: true}, () => {
+      this.refs.type.focus();
+    });
   }
 
   onBlurWork() {
@@ -120,8 +127,15 @@ class Input extends React.Component {
     // Stop button is clicked
     if (!this.state.buttonStart) {
       this.props.onStopButtonClicked();
+
+      // Stop timer
       clearInterval(this.timer);
+
+      // Set back type and work of task
       this.setState({typeFocused: true, workFocused: true});
+
+      // Focus input of task
+      this.refs.taskInput.focus()
     // Start button is clicked
     } else {
       this.props.onStartButtonClicked();
