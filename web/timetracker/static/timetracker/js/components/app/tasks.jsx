@@ -15,7 +15,13 @@ class Tasks extends React.Component {
 
     if (this.props.tasks) {
       tasks = this.props.tasks.map(function(task) {
-          return <li data-task-id={task.id} onClick={self.taskClicked}>{task.goal}</li>;
+          return <li data-task-id={task.id} onClick={self.taskClicked}>
+            <div className="tasks-description">{task.goal}</div>
+            <div className="tasks-category"><div className="chip">{task.task_category}</div></div>
+            <div className="tasks-type"><div className="chip">{task.task_type}</div></div>
+            <div className="tasks-duration">{task.duration}</div>
+            <div className="tasks-delete"><i className="material-icons">clear</i></div>
+          </li>;
       });
     } else {
       tasks = <li>No tasks yet</li>;
