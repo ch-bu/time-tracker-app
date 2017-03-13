@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {taskDescription: '',
-                  workDescription: '',
+                  categoryDescription: '',
                   typeDescription: '',
                   taskDuration: moment('000000', 'HHmmss'),
                   taskStarted: null,
@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <div id="app">
         <Input taskDescription={this.state.taskDescription}
-          workDescription={this.state.workDescription}
+          categoryDescription={this.state.categoryDescription}
           typeDescription={this.state.typeDescription}
           taskDuration={this.state.taskDuration}
           handleTaskDescriptionChange={this.handleTaskDescriptionChange}
@@ -66,7 +66,7 @@ class App extends React.Component {
   // whenever a user types any changes
   // in the input box
   handleWorkDescriptionChange(value) {
-    this.setState({workDescription: value});
+    this.setState({categoryDescription: value});
   }
 
   // Change duration of task every second after
@@ -110,7 +110,9 @@ class App extends React.Component {
         started: moment(this.state.taskStarted).format('YYYY-MM-DD HH:mm:ss'),
         stopped: moment().format('YYYY-MM-DD HH:mm:ss'),
         duration: seconds,
-        goal: this.state.taskDescription
+        goal: this.state.taskDescription,
+        task_category: this.state.categoryDescription,
+        task_type: this.state.typeDescription
       };
 
     // Send request
@@ -130,7 +132,7 @@ class App extends React.Component {
     // finished
     this.setState({taskDuration: moment('000000', 'HHmmss'),
       taskDescription: '',
-      workDescription: '',
+      categoryDescription: '',
       typeDescription: '',
       taskStopped: new Date()});
   }

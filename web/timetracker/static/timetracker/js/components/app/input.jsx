@@ -33,14 +33,14 @@ class Input extends React.Component {
     var type;
     if (this.state.workFocused == true) {
       work =  <input tabindex="2" placeholder={"Arbeit"}
-                value={this.props.workDescription}
+                value={this.props.categoryDescription}
                 ref="work"
                 onChange={this.changeWorkDescription}
                 onBlur={this.onBlurWork}/>;
     } else {
         work = <div className="chip"
           onClick={this.onWorkChipClick}>
-          {this.props.workDescription}</div>;
+          {this.props.categoryDescription}</div>;
     }
 
     if (this.state.typeFocused == true) {
