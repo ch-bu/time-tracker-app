@@ -20,20 +20,22 @@ class Tasks extends React.Component {
             .seconds(task.duration)
             .format('HH:mm:ss');
 
-          return <li>
-            <div className="tasks-description">{task.goal}</div>
-            <div className="tasks-category"><div className="chip">{task.task_category}</div></div>
-            <div className="tasks-type"><div className="chip">{task.task_type}</div></div>
-            <div className="tasks-duration">{duration}</div>
-            <div className="tasks-delete"><i className="material-icons" data-task-id={task.id} onClick={self.taskClicked}>clear</i></div>
-          </li>;
+          return (
+            <li>
+              <div className="tasks-description">{task.goal}</div>
+              <div className="tasks-category"><div className="chip">{task.task_category}</div></div>
+              <div className="tasks-type"><div className="chip">{task.task_type}</div></div>
+              <div className="tasks-duration">{duration}</div>
+              <div className="tasks-delete"><i className="material-icons" data-task-id={task.id} onClick={self.taskClicked}>clear</i></div>
+            </li>
+          )
       });
     } else {
       tasks = <li>No tasks yet</li>;
     }
 
     return (
-      <div className="container" id="tasks">
+      <div id="tasks">
         <ul className="tasks-ul">{tasks}</ul>
       </div>
     )

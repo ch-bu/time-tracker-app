@@ -7,6 +7,8 @@
     height: 70px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
     background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 0px;
 
     input {
       padding-left: 20px;
@@ -55,6 +57,50 @@
         cursor: pointer;
       }
     }
+  }
+
+  #app-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    #navigation-outer {
+      width: 10%;
+      background-color: #323232;
+      min-height: 100vh;
+
+
+      ul {
+        margin: 20px 7px 10px 10px;
+
+        li {
+          padding: 8px;
+          position: relative;
+
+          span {
+            position: absolute;
+            height: 100%;
+            color: #fff;
+            padding-left: 10px;
+          }
+
+          &:hover {
+            background-color: #202020;
+            border-radius: 8px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      i {
+        color: #fff;
+      }
+    }
+
+    #tasks  {
+      width: 90%;
+    }
+
   }
 
 }

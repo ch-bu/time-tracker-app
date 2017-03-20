@@ -1,5 +1,6 @@
 import Input from './input.jsx';
 import Tasks from './tasks.jsx';
+import AppContent from './app-content.jsx'
 import {ajax, getCookie, csrfSafeMethod} from '../../helper/helper.js';
 
 class App extends React.Component {
@@ -45,7 +46,7 @@ class App extends React.Component {
           onDurationChange={this.handleDurationChange}
           onStopButtonClicked={this.onStopButtonClicked}
           onStartButtonClicked={this.onStartButtonClicked} />
-        <Tasks tasks={this.state.tasks} getTasks={this.getTasks} />
+        <AppContent tasks={this.state.tasks} getTasks={this.getTasks} />
       </div>
     )
   }
