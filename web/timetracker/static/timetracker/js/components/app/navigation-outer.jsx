@@ -9,21 +9,25 @@ class NavigationOuter extends React.Component {
   }
 
   render() {
+
+    let tasksActive = this.props.tasksActive ? 'active' : '';
+    let reportActive = this.props.reportActive ? 'active': '';
+
     return (
       <div id="navigation-outer">
         <ul>
-          <li onClick={this.showTasks}>
+          <li onClick={this.showTasks} className={tasksActive}>
             <i className="material-icons">alarm_on</i>
             <span>Timer</span>
           </li>
-          <li onClick={this.showReport}>
+          <li onClick={this.showReport} className={reportActive}>
             <i className="material-icons">dashboard</i>
             <span>Daily Report</span>
           </li>
-          <li>
+          {/*<li>
             <i className="material-icons">equalizer</i>
             <span>Progress</span>
-          </li>
+          </li>*/}
         </ul>
       </div>
     )

@@ -71,12 +71,13 @@
 
 
       ul {
-        margin: 20px 7px 10px 10px;
+        margin: 20px 10px 20px 10px;
 
         li {
           padding: 8px;
           position: relative;
           transition: background-color 0.3s;
+          cursor: pointer;
 
           span {
             position: absolute;
@@ -85,10 +86,9 @@
             padding-left: 10px;
           }
 
-          &:hover {
+          &.active {
             background-color: #202020;
             border-radius: 8px;
-            cursor: pointer;
           }
         }
       }

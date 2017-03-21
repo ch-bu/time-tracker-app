@@ -27,7 +27,9 @@ class AppContent extends React.Component {
     return (
       <div id="app-content">
         <NavigationOuter showReport={this.showReport}
-                         showTasks={this.showTasks} />
+                         showTasks={this.showTasks}
+                         tasksActive={this.state.showTasks}
+                         reportActive={this.state.showReport} />
         {tasks}
         {dailyReport}
       </div>
