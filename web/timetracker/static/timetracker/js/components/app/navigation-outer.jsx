@@ -3,17 +3,20 @@ class NavigationOuter extends React.Component {
   constructor(props) {
     super(props);
 
+    // Bind this to methods
+    this.showReport = this.showReport.bind(this);
+    this.showTasks = this.showTasks.bind(this);
   }
 
   render() {
     return (
       <div id="navigation-outer">
         <ul>
-          <li>
+          <li onClick={this.showTasks}>
             <i className="material-icons">alarm_on</i>
             <span>Timer</span>
           </li>
-          <li>
+          <li onClick={this.showReport}>
             <i className="material-icons">dashboard</i>
             <span>Daily Report</span>
           </li>
@@ -24,6 +27,14 @@ class NavigationOuter extends React.Component {
         </ul>
       </div>
     )
+  }
+
+  showReport() {
+    this.props.showReport();
+  }
+
+  showTasks() {
+    this.props.showTasks();
   }
 
 }
