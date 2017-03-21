@@ -6,3 +6,6 @@
 # Ignore Sublime
 sublime-project
 sublime-project.sublime-workspace
+
+# Ignore bundles files
+static/timetracker/
