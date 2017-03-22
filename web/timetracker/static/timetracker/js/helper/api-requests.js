@@ -56,5 +56,33 @@ function getAPITasks(self) {
     });
 }
 
+function postTask(self, dataToSend) {
+    // Get csrftoken cookie
+    var csrftoken = getCookie('csrftoken');
 
-export {deleteTask, getAPITasks};
+    // Set X-CsRFtoken header before each
+    // ajax request
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+    });
+
+    // Send request
+    $.ajax({
+      url: '/api/tasks/',
+      type: 'POST',
+      data: dataToSend,
+      success: function(result) {
+        self.setState({tasks: self.getTasks()});
+      },
+      error(xhr, status, error) {
+        Materialize.toast('Your login failed.', 4000);
+      }
+    });
+}
+
+
+export {deleteTask, getAPITasks, postTask};

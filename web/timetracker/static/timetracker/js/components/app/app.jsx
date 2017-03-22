@@ -2,7 +2,7 @@ import Input from './input.jsx';
 import Tasks from './tasks.jsx';
 import AppContent from './app-content.jsx'
 import {ajax, getCookie, csrfSafeMethod} from '../../helper/helper.js';
-import {getAPITasks} from '../../helper/api-requests.js';
+import {getAPITasks, postTask} from '../../helper/api-requests.js';
 
 class App extends React.Component {
 
@@ -22,7 +22,6 @@ class App extends React.Component {
     this.handleWorkDescriptionChange = this.handleWorkDescriptionChange.bind(this);
     this.handleTypeDescriptionChange = this.handleTypeDescriptionChange.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
-
     this.onStopButtonClicked = this.onStopButtonClicked.bind(this);
     this.onStartButtonClicked = this.onStartButtonClicked.bind(this);
     this.getTasks = this.getTasks.bind(this);
@@ -100,23 +99,6 @@ class App extends React.Component {
       hours: this.state.taskDuration.get('hour'),
     }).asSeconds();
 
-    ////////////////////////////
-    // Send data to server
-    // ////////////////////////
-
-    // Get csrftoken cookie
-    var csrftoken = getCookie('csrftoken');
-
-    // Set X-CsRFtoken header before each
-    // ajax request
-    $.ajaxSetup({
-        beforeSend: function(xhr, settings) {
-          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-              xhr.setRequestHeader("X-CSRFToken", csrftoken);
-          }
-        }
-    });
-
     // Store data to send in variable
     var dataToSend = {
         started: moment(this.state.taskStarted).format('YYYY-MM-DD HH:mm:ss'),
@@ -127,18 +109,8 @@ class App extends React.Component {
         task_type: this.state.typeDescription
       };
 
-    // Send request
-    $.ajax({
-      url: '/api/tasks/',
-      type: 'POST',
-      data: dataToSend,
-      success: function(result) {
-        self.setState({tasks: self.getTasks()});
-      },
-      error(xhr, status, error) {
-        Materialize.toast('Your login failed.', 4000)
-      }
-    });
+    // Send data to server
+    postTask(self, dataToSend);
 
     // Reset task values and send data to server when
     // finished
