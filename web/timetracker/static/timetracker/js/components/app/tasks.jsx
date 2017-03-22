@@ -6,6 +6,11 @@ class Tasks extends React.Component {
   constructor(props) {
     super(props);
 
+
+    this.state = {
+      sortedTasks: []
+    };
+
     // Bind this to methods
     this.taskClicked = this.taskClicked.bind(this);
     this.sortTasks = this.sortTasks.bind(this);
@@ -19,7 +24,15 @@ class Tasks extends React.Component {
 
       let sortedTasks = this.sortTasks();
 
-      console.log(sortedTasks);
+      let todaysTasks = sortedTasks.filter((e) => {
+        let taskDate = new Date(e.started)
+        let today = new Date();
+
+        return taskDate.toDateString() == today.toDateString();
+      });
+
+      console.log(todaysTasks);
+      // console.log(sortedTasks);
 
       tasks = sortedTasks.map(function(task) {
 
@@ -51,16 +64,8 @@ class Tasks extends React.Component {
   sortTasks() {
 
     // console.log(this.props.tasks);
-
-    // console.log(this.props.tasks);
     let sorted = this.props.tasks.sort((a, b) => {
-      // console.log(new Date(a.started));
-      // console.log(new Date(b.started));
-      // console.log(b);
-      // Turn your strings into dates, and then subtract them
-      // to get a value that is either negative, positive, or zero.
       return new Date(b.started) - new Date(a.started);
-      // return null;
     });
 
     return sorted;
