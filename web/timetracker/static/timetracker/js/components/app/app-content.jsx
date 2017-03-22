@@ -39,7 +39,6 @@ class AppContent extends React.Component {
   /**
    * Displays the daily report of
    * tasks
-   * @return None
    */
   showReport() {
     this.setState({showReport: true, showTasks: false, showProgress: false});

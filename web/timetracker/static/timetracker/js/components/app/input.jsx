@@ -18,11 +18,19 @@ class Input extends React.Component {
     this.state = {buttonStart: true};
   }
 
+  /**
+   * Set work and type fields
+   * to input element when components
+   * renders first
+   */
   componentWillMount() {
     this.setState({workFocused: true,
                    typeFocused: true});
   }
 
+  /**
+   * Render component
+   */
   render() {
     // Get right icon (play vs. stop)
     var buttonText = this.state.buttonStart ? 'play_circle_filled' : 'stop';
@@ -87,42 +95,74 @@ class Input extends React.Component {
     );
   }
 
+  /**
+   * When user clicks the
+   * work chip, render the input
+   * element instead
+   */
   onWorkChipClick() {
     this.setState({workFocused: true}, () => {
       this.refs.work.focus();
     });
   }
 
+  /**
+   * When user clicks the
+   * type chip, render the input
+   * element instead
+   */
   onTypeChipClicked() {
     this.setState({typeFocused: true}, () => {
       this.refs.type.focus();
     });
   }
 
+  /**
+   * When focus of input element
+   * of work disappears render chip
+   * element
+   */
   onBlurWork() {
     this.setState({workFocused: false});
   }
 
+  /**
+   * When focus on input element of
+   * type disappears render chip
+   * element
+   */
   onBlurType() {
     this.setState({typeFocused: false});
   }
 
-  // Change description of task whenever
-  // user types any changes in the input box
+  /**
+   * Change description of task whenever
+   * user types any changes in the input box
+   */
   changeTaskDescription(e) {
     this.props.handleTaskDescriptionChange(e.target.value);
   }
 
+  /**
+   * Change work when user types any
+   * changes
+   */
   changeWorkDescription(e) {
     this.props.handleWorkDescriptionChange(e.target.value);
   }
 
+  /**
+   * Change type description when users
+   * types any changes
+   */
   changeTypeDescription(e) {
     this.props.handleTypeDescriptionChange(e.target.value);
   }
 
-  // Change button type when user clicks
-  // and handle timer
+  /**
+   * Change button type when user clicks
+   * and handle timer
+   */
   onButtonClicked(e) {
     // Stop button is clicked
     if (!this.state.buttonStart) {

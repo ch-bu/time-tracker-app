@@ -51,34 +51,44 @@ class App extends React.Component {
     )
   }
 
-  // Change description of task whenever
-  // user types any changes in the input box
+  /**
+   * Change description of task whenever
+   * user types any changes in the input box
+   */
   handleTaskDescriptionChange(value) {
     this.setState({taskDescription: value});
   }
 
-  // Change type of task whenever
-  // user types any changes in the input box
+  /**
+   * Change type of task whenever
+   * user types any changes in the input box
+   */
   handleTypeDescriptionChange(value) {
     this.setState({typeDescription: value});
   }
 
-  // Change work description
-  // whenever a user types any changes
-  // in the input box
+  /**
+   * Change work description
+   * whenever a user types any changes
+   * in the input box
+   */
   handleWorkDescriptionChange(value) {
     this.setState({categoryDescription: value});
   }
 
-  // Change duration of task every second after
-  // start button has been clicked
+  /**
+   * Change duration of task every second after
+   * start button has been clicked
+   */
   handleDurationChange() {
     this.setState({taskDuration: this.state.taskDuration.add(1, 's')});
   }
 
-  // When a user clicks the stop button,
-  // rerender tasks and
-  // reset taskDuration state to zero
+  /**
+   * When a user clicks the stop button,
+   * rerender tasks and
+   * reset taskDuration state to zero
+   */
   onStopButtonClicked() {
     var self = this;
 
@@ -138,7 +148,9 @@ class App extends React.Component {
       taskStopped: new Date()});
   }
 
-
+  /**
+   * Get all tasks from the server
+   */
   getTasks() {
     // Get tasks and save
     var self = this;
@@ -166,7 +178,9 @@ class App extends React.Component {
     });
   }
 
-  // When user clicks start Button save date time
+  /**
+   * When user clicks start Button save date time
+   */
   onStartButtonClicked() {
     this.setState({taskStarted: new Date()});
   }
