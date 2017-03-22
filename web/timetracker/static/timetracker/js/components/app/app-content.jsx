@@ -22,7 +22,7 @@ class AppContent extends React.Component {
 
     // Show different components depending on which the user has clicked
     let tasks = this.state.showTasks ? <Tasks tasks={this.props.tasks} getTasks={this.props.getTasks} /> : '';
-    let dailyReport = this.state.showReport ? <DailyReport /> : '';
+    let dailyReport = this.state.showReport ? <DailyReport task={this.props.tasks} /> : '';
 
     return (
       <div id="app-content">

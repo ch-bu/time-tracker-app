@@ -6,7 +6,9 @@ class Tasks extends React.Component {
   constructor(props) {
     super(props);
 
+    // Bind this to methods
     this.taskClicked = this.taskClicked.bind(this);
+    this.sortTasks = this.sortTasks.bind(this);
   }
 
   render() {
@@ -14,7 +16,12 @@ class Tasks extends React.Component {
     var tasks;
 
     if (this.props.tasks) {
-      tasks = this.props.tasks.map(function(task) {
+
+      let sortedTasks = this.sortTasks();
+
+      console.log(sortedTasks);
+
+      tasks = sortedTasks.map(function(task) {
 
           var duration = moment().startOf('day')
             .seconds(task.duration)
@@ -40,6 +47,26 @@ class Tasks extends React.Component {
       </div>
     )
   }
+
+  sortTasks() {
+
+    // console.log(this.props.tasks);
+
+    // console.log(this.props.tasks);
+    let sorted = this.props.tasks.sort((a, b) => {
+      // console.log(new Date(a.started));
+      // console.log(new Date(b.started));
+      // console.log(b);
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.started) - new Date(a.started);
+      // return null;
+    });
+
+    return sorted;
+
+  }
+
 
   taskClicked(e) {
     var taskId = e.target.getAttribute('data-task-id');
