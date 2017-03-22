@@ -30,4 +30,31 @@ function deleteTask(taskId, getTasks) {
 }
 
 
-export {deleteTask};
+function getAPITasks(self) {
+    // Get csrftoken cookie
+    var csrftoken = getCookie('csrftoken');
+
+    // Set X-CsRFtoken header before each
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+    });
+
+    // Send request
+    $.ajax({
+      url: '/api/tasks/',
+      type: 'GET',
+      success: function(result) {
+        self.setState({tasks: result});
+      },
+      error: function(xhr, status, error) {
+        Materialize.toast('Your tasks could not be fetched.', 4000);
+      }
+    });
+}
+
+
+export {deleteTask, getAPITasks};
