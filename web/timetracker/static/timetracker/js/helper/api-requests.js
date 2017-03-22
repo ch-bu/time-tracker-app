@@ -48,6 +48,7 @@ function getAPITasks(self) {
       url: '/api/tasks/',
       type: 'GET',
       success: function(result) {
+        console.log(result);
         self.setState({tasks: result});
       },
       error: function(xhr, status, error) {
