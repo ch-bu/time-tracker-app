@@ -12,3 +12,7 @@ class Task(models.Model):
     task_category = models.CharField(max_length=500)
     task_type = models.CharField(max_length=500)
     # comment = models.TextField()
+
+class TaskItem(models.Model):
+    item_category = models.CharField(max_length=500)
+    item_type = models.CharField(max_length=500)
