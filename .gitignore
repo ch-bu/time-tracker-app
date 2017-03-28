@@ -8,4 +8,5 @@ sublime-project
 sublime-project.sublime-workspace
 
 # Ignore bundles files
-/web/static/timetracker/**/*.js
+web/static/timetracker/css/styles.min.css
+web/timetracker/static/timetracker/css/**/*.css
