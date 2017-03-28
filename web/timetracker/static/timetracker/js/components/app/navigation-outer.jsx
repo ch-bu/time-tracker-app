@@ -18,11 +18,11 @@ class NavigationOuter extends React.Component {
         <ul>
           <li onClick={this.showTasks} className={tasksActive}>
             <i className="material-icons">alarm_on</i>
-            <span>Timer</span>
+            <span className="hide-on-med-and-down">Timer</span>
           </li>
           <li onClick={this.showReport} className={reportActive}>
             <i className="material-icons">dashboard</i>
-            <span>Daily Report</span>
+            <span className="hide-on-med-and-down">Daily Report</span>
           </li>
           {/*<li>
             <i className="material-icons">equalizer</i>
