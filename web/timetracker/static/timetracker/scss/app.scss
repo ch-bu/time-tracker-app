@@ -1,14 +1,16 @@
 #app {
 
-  background-color:  rgb(250, 251, 252);
+  background-color: #121314;
   min-height: 100vh;
 
   #bar-task {
     height: 70px;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
-    background-color: #fff;
+    // box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
+    border-bottom: 1px solid #191919;
+    background-color: #1c1c1f;
+    color: #999999;
     overflow: hidden;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
 
     input {
       padding-left: 20px;
@@ -66,7 +68,7 @@
 
     #navigation-outer {
       width: 10%;
-      background-color: #323232;
+      background-color: #1c1c1f;
       min-height: 100vh;
 
       ul {
@@ -81,7 +83,7 @@
           span {
             position: absolute;
             height: 100%;
-            color: #fff;
+            color: #999999;
             padding-left: 10px;
           }
 
@@ -93,7 +95,7 @@
       }
 
       i {
-        color: #fff;
+        color: #999999;
       }
     }
 
